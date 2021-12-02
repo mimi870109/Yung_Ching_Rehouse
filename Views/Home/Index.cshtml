@@ -6,51 +6,56 @@
     <h1>學生資料表</h1>
 
     <div>
-        <table>
+        <table class="table">
             <tr>
-                <td>
+                <td scope="col">
                     序號
                 </td>
-                <td>
+                <td scope="col">
                     姓名
                 </td>
-                <td>
+                <td scope="col">
                     手機
                 </td>
-                <td>
+                <td scope="col">
                     出生
                 </td>
-                <td>
+                <td scope="col">
                     總分
                 </td>
-                <td>
+                <td scope="col">
                     功能
                 </td>
             </tr>
             @{ foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td scope="row">
                             @item.id
                         </td>
-                        <td>
+                        <td scope="row">
                             @item.name
                         </td>
-                        <td>
+                        <td scope="row">
                             @item.phone
                         </td>
-                        <td>
+                        <td scope="row">
                             @item.birthday
                         </td>
-                        <td>
+                        <td scope="row">
                             @item.sum
                         </td>
-                        <td>
-                            <input type="button" id="update" value="修改" />
-                            <input type="button" id="delete" value="刪除" />
+                        <td scope="row">
+                            <input type="button" class="btn btn-primary"onclick="location.href = '@Url.Action("Edit","Home",new { id=item.id})'" id="update" value="修改" />
+                            <input type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("Delete","Home",new { id=item.id})'" id="delete" value="刪除" />
                         </td>
                     </tr>
                 }
             }
         </table>
     </div>
+
+<script>
+
+
+</script>

@@ -34,7 +34,34 @@ namespace Yung_Ching_Rehouse.Controllers
             }
           
         }
+        public IActionResult Edit(string id)
+        {
+            using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
+            {
+                var list=conn.Query<studentData>("select * from `student`where id=@id",new { id = id }).ToList();
+                var data = new studentData();
+                data.id = list[0].id;
+                data.name = list[0].name;
+                data.phone = list[0].phone;
+                data.sum = list[0].sum;
+                conn.Close();
 
+                return View(data);
+
+            }
+            
+        }
+        [HttpPost]
+        public string Editdata(string id, string name, string phone, string sum)
+        {
+            using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
+            {
+                var sql = @"update student set name=@name,phone=@phone,sum=@sum where id=@id";
+                var result = conn.Execute(sql, new { id = id,name=name,phone=phone,sum=sum });
+
+            }
+            return "成功";
+        }
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model studentData
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+<input type="text" id="id" value="@Model.id" />
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">姓名</span>
+    </div>
+    <input type="text" class="form-control" value="@Model.name" id="name" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">手機</span>
+    </div>
+    <input type="text" class="form-control"  value="@Model.phone" id="phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+
+
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">總分</span>
+    </div>
+    <input type="text" class="form-control"  value="@Model.sum" id="sum" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+</div>
+<input type="button" id="updata" class="btn btn-warning" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#updata").click(function () {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "/Home/Editdata",
+                data: {
+                    id: $("#id").val(),
+                    name: $("#name").val(),
+                    phone: $("#phone").val(),
+                    sum: $("#sum").val()
+
+                },
+                success: function (data) {
+                    alert("修改成功")
+                }
+
+            });
+        });
+    })
+</script>
