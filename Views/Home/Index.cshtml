@@ -4,7 +4,7 @@
  
 @model IEnumerable<studentData>    
     <h1>學生資料表</h1>
-
+    <input type="button" class="btn btn-success" onclick="location.href = '@Url.Action("Insert","Home")'" id="delete" value="新增資料" />
     <div>
         <table class="table">
             <tr>

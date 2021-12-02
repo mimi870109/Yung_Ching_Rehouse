@@ -34,6 +34,24 @@ namespace Yung_Ching_Rehouse.Controllers
             }
           
         }
+
+        public IActionResult Insert()
+        {
+ 
+                return View();
+        }
+        [HttpPost]
+        public string Insertdata( string name, string phone, string birthday, string sum)
+        {
+
+            using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
+            {
+                var sql = @"insert into student (name,phone,birthday,sum) values(@name,@phone,@birthday,@sum)";
+                var result = conn.Execute(sql, new { name = name, phone = phone, birthday= birthday, sum = sum });
+
+            }
+            return "成功";
+        }
         public IActionResult Edit(string id)
         {
             using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
@@ -62,15 +80,6 @@ namespace Yung_Ching_Rehouse.Controllers
             }
             return "成功";
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }
