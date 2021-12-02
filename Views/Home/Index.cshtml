@@ -23,6 +23,9 @@
                 <td>
                     總分
                 </td>
+                <td>
+                    功能
+                </td>
             </tr>
             @{ foreach (var item in Model)
                 {
@@ -41,6 +44,10 @@
                         </td>
                         <td>
                             @item.sum
+                        </td>
+                        <td>
+                            <input type="button" id="update" value="修改" />
+                            <input type="button" id="delete" value="刪除" />
                         </td>
                     </tr>
                 }
