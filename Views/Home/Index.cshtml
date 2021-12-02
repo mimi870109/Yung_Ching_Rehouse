@@ -1,5 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+ 
+@model IEnumerable<studentData>    
+    <h1>學生資料表</h1>
 
-<h1>學生資料表</h1>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    序號
+                </td>
+                <td>
+                    姓名
+                </td>
+                <td>
+                    手機
+                </td>
+                <td>
+                    出生
+                </td>
+                <td>
+                    總分
+                </td>
+            </tr>
+            @{ foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.id
+                        </td>
+                        <td>
+                            @item.name
+                        </td>
+                        <td>
+                            @item.phone
+                        </td>
+                        <td>
+                            @item.birthday
+                        </td>
+                        <td>
+                            @item.sum
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>

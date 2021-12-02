@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Yung_Ching_Rehouse.Models;
+using Dapper;
+using MySqlConnector;
 
 namespace Yung_Ching_Rehouse.Controllers
 {
@@ -20,7 +22,17 @@ namespace Yung_Ching_Rehouse.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
+            {
+                var list = conn.Query<studentData>("select * from `student`").ToList();
+               
+                conn.Close();
+
+                return View(list);
+
+            }
+          
         }
 
         public IActionResult Privacy()
