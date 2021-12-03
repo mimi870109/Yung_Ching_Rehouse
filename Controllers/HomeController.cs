@@ -69,6 +69,17 @@ namespace Yung_Ching_Rehouse.Controllers
             }
             
         }
+
+        public string Delete(string id)
+        {
+            using (var conn = new MySqlConnection("server=sg2nlmysql47plsk.secureserver.net;port=3306;user id=xcard;password=aa901078;database=ph13886867778_;charset=utf8;"))
+            {
+                var list = conn.Query("DELETE from `student` where id=@id", new { id = id });
+
+                conn.Close();
+            }
+            return "成功";
+        }
         [HttpPost]
         public string Editdata(string id, string name, string phone, string sum)
         {
